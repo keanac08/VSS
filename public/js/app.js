@@ -42112,7 +42112,7 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.echarts = __webpack_require__(/*! ./plugins/charts/echarts/echarts.min.js */ "./resources/js/limitless/plugins/charts/echarts/echarts.min.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-window.axios.defaults.baseURL = 'http://localhost/sales/';
+window.axios.defaults.baseURL = document.head.querySelector('meta[name="base-url"]').content;
 
 /***/ }),
 
@@ -45647,8 +45647,8 @@ window.addEventListener('load', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\sales\resources\js\limitless\app.js */"./resources/js/limitless/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\sales\resources\sass\limitless\app.scss */"./resources/sass/limitless/app.scss");
+__webpack_require__(/*! C:\wamp64\www\vss\resources\js\limitless\app.js */"./resources/js/limitless/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\vss\resources\sass\limitless\app.scss */"./resources/sass/limitless/app.scss");
 
 
 /***/ })

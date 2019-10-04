@@ -213,14 +213,16 @@
                                 }
                             })
                             .then((response) => {
-
-                                response.data.forEach((wb, index) => {
-                                    this.$set(this.invoices[selected[index]], 'wb_number', wb.wb_number);
-                                    this.$set(this.invoices[selected[index]], 'wb_id', wb.id);
-                                });
-                            })
-                            .then(() => {
-                                this.disable_save = false;
+                                if(response.data.length > 0){
+                                    response.data.forEach((wb, index) => {
+                                        this.$set(this.invoices[selected[index]], 'wb_number', wb.wb_number);
+                                        this.$set(this.invoices[selected[index]], 'wb_id', wb.id);
+                                    });
+                                    this.disable_save = false;
+                                }
+                                else{
+                                    this.disable_save = true;
+                                }
                             })
                         }
                         else{
@@ -246,30 +248,32 @@
                             })
                             .then((response) => {
 
-                                console.log(response.data)
-
-                                let wb = response.data
-                                let ctr = 0
-                                this.invoices.forEach((invoice, index) => {
-                                    if(invoice.w_csr){
-                                        if(typeof wb[ctr] !== 'undefined') {
-                                            this.$set(this.invoices[index], 'wb_number', wb[ctr]['wb_number'])
-                                            this.$set(this.invoices[index], 'wb_id', wb[ctr]['id'])
+                                // console.log(response.data)
+                                if(response.data.length > 0){
+                                    let wb = response.data
+                                    let ctr = 0
+                                    this.invoices.forEach((invoice, index) => {
+                                        if(invoice.w_csr){
+                                            if(typeof wb[ctr] !== 'undefined') {
+                                                this.$set(this.invoices[index], 'wb_number', wb[ctr]['wb_number'])
+                                                this.$set(this.invoices[index], 'wb_id', wb[ctr]['id'])
+                                            }
+                                            else {
+                                                this.$set(this.invoices[index], 'wb_number', null)
+                                                this.$set(this.invoices[index], 'wb_id', null)
+                                            }
+                                            ctr++
                                         }
-                                        else {
+                                        else{
                                             this.$set(this.invoices[index], 'wb_number', null)
                                             this.$set(this.invoices[index], 'wb_id', null)
                                         }
-                                        ctr++
-                                    }
-                                    else{
-                                        this.$set(this.invoices[index], 'wb_number', null)
-                                        this.$set(this.invoices[index], 'wb_id', null)
-                                    }
-                                });
-                            })
-                            .then(() => {
-                                this.disable_save = false;
+                                    });
+                                    this.disable_save = false;
+                                }
+                                else{
+                                    this.disable_save = true
+                                }
                             })
                             .catch((error) => {
                                 console.log(error);

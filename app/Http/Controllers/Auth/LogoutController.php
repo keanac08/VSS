@@ -11,9 +11,10 @@ class LogoutController extends Controller
 {    
     public function logout()
     {
-        $host = $_SERVER['HTTP_HOST'];
+        
         Auth::logout();
         Session::flush();
-        return redirect()->intended('http://'.$host.'/webapps/login/logout');
+
+        return redirect()->intended('http://'.$_SERVER['HTTP_HOST'].'/webapps/login/logout');
     }
 }

@@ -20,7 +20,7 @@ class DeliveryController extends Controller
 
         // 40300015727 40300009167 902768 508788 3374448 $request['invoice_id']
 
-        $data['data'] = $this->InvoiceModel->selectInvoicesActualPrint($request['invoice_id']);
+        $data['data'] = $this->InvoiceModel->selectForInvoicePrinting($request['invoice_id']);
 
         $pdf = PDF::loadView('reports.pdf.delivery', $data);
         $pdf->setPaper([0, 0, 612, 864], 'Portrait');

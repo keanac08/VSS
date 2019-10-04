@@ -29,10 +29,6 @@ class InvoiceModel extends Model
                 FROM ra_customer_trx_all rcta
                         LEFT JOIN ipc_vehicle_cm cm 
                             ON rcta.customer_trx_id = cm.orig_trx_id
-                        --LEFT JOIN hz_cust_accounts_all hcaa
-                            --ON rcta.sold_to_customer_id = hcaa.cust_account_id
-                        --LEFT JOIN hz_parties hp 
-                            --ON hcaa.party_id = hp.party_id
                         LEFT JOIN oe_order_headers_all ooha
                             ON rcta.interface_header_attribute1 = ooha.order_number
                         LEFT JOIN mtl_serial_numbers msn

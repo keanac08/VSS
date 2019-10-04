@@ -57,7 +57,6 @@ Route::middleware(['auth:oracle_user,ipc_portal_user'])->group(function () { //-
 
     Route::get('/fetch-dashboard-monthly', 'DashboardController@fetchDashboardMonthlySummary');
 
-
     //customer
     Route::get('/customer-list-allocation', 'CustomerController@fetchForWbAllocation');
     Route::get('/customer-list-print', 'CustomerController@fetchForInvoicePrint');

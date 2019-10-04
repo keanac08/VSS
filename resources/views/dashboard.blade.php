@@ -195,7 +195,7 @@
 
                     genFormatter = (series) => {
                         return (param) => {
-                            console.log(param);
+                            // console.log(param);
                             let sum = 0;
                             series.forEach(item => {
                                 sum += parseInt(item.data[param.dataIndex]);

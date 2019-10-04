@@ -104,7 +104,7 @@
                     this.show_success_msg = false
                     this.last_batch_name = ''
 
-                    if(parseInt(this.wb_from) >= parseInt(this.wb_to) || !this.wb_from || !this.wb_to){
+                    if(parseInt(this.wb_from) > parseInt(this.wb_to) || !this.wb_from || !this.wb_to){
                         Swal.fire({
                             type: 'error',
                             text: 'Invalid warranty booklet series.',
