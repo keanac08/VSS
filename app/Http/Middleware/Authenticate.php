@@ -16,7 +16,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             // return route('login');
-            return url('http://'.$_SERVER['HTTP_HOST'].'/webapps/test');
+            return url('http://'.$_SERVER['HTTP_HOST'].'/webapps');
         }
     }
 }
