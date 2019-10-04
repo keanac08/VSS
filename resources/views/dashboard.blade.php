@@ -6,9 +6,9 @@
 
 @section('content')
     <?php 
-    echo '<pre>';
-    print_r(session()->all()); 
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r(session()->all()); 
+    // echo '</pre>';
     // echo session('user.first_name');
     ?>
     <div class="content pt-0">
