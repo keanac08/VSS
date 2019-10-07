@@ -303,7 +303,7 @@
                                 type: 'error',
                                 text: 'Warranty booklet has been already used.',
                                 customClass: {
-                                    // confirmButton: 'btn bg-teal btn-sm'
+                                    confirmButton: 'btn btn-danger btn-sm'
                                 },
                                 // showConfirmButton: false,
                                 // timer: 1500
@@ -327,7 +327,7 @@
                     .then(() => {
                         this.fetchInvoices()
                     })
-                    .catch(() => {
+                    .catch((error) => {
                         console.log(error);
                     })
                     .finally(() => {
