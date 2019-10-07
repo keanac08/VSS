@@ -64,7 +64,7 @@
                     })
                     .then(() => {
                         $('.table-dt').DataTable({
-                            scrollX: true
+                            // scrollX: true
                         });
                         $('.dataTables_length select').select2({
                             minimumResultsForSearch: Infinity,

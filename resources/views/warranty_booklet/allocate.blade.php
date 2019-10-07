@@ -297,18 +297,32 @@
                     })
                     .then((response) => {
                         console.log(response.data);
-                        Swal.fire({
-                            type: 'success',
-                            text: 'Warranty booklet successfully tagged.',
-                            customClass: {
-                                confirmButton: 'btn bg-teal btn-sm'
-                            },
-                            // showConfirmButton: false,
-                            // timer: 1500
-                        })
-                    })
-                    .then(() => {
-                        this.show_success_msg = true;
+
+                        if(!response.data){
+                            Swal.fire({
+                                type: 'error',
+                                text: 'Warranty booklet has been already used.',
+                                customClass: {
+                                    // confirmButton: 'btn bg-teal btn-sm'
+                                },
+                                // showConfirmButton: false,
+                                // timer: 1500
+                            })
+                            throw new Error("WB not available")
+                        }
+                        else{
+                            Swal.fire({
+                                type: 'success',
+                                text: 'Warranty booklet successfully tagged.',
+                                customClass: {
+                                    confirmButton: 'btn bg-teal btn-sm'
+                                },
+                                // showConfirmButton: false,
+                                // timer: 1500
+                            })
+                            this.show_success_msg = true;
+                        }
+                        
                     })
                     .then(() => {
                         this.fetchInvoices()
