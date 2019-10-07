@@ -303,7 +303,7 @@
                                 type: 'error',
                                 text: 'Warranty booklet has been already used.',
                                 customClass: {
-                                    confirmButton: 'btn btn-danger btn-sm'
+                                    confirmButton: 'btn bg-danger btn-sm'
                                 },
                                 // showConfirmButton: false,
                                 // timer: 1500
