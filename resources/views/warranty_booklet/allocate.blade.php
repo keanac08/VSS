@@ -308,6 +308,7 @@
                                 // showConfirmButton: false,
                                 // timer: 1500
                             })
+                            this.fetchInvoices()
                             throw new Error("WB not available")
                         }
                         else{
