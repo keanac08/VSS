@@ -9,12 +9,12 @@
 
         <div class="navbar-collapse collapse" id="navbar-footer">
             <span class="navbar-text">
-                &copy; 2019. <a class="text-teal" href="https://www.isuzuphil.com"><span class="text-teal">Isuzu Philippines Corporation</span></a>
+                &copy; 2019 . MIS . <a class="text-teal" href="https://www.isuzuphil.com"><span class="text-teal">Isuzu Philippines Corporation</span></a>
             </span>
 
             <ul class="navbar-nav ml-lg-auto">
                 <li class="nav-item">
-                    <a href="#" class="text-teal">Management Information Systems</a>
+                    <a href="#" class="text-teal">Vehicle Invoicing System</a>
                 </li>
             </ul>
         </div>
