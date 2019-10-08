@@ -38,6 +38,7 @@ class LoginController extends Controller
                 'shortname'      => pascalCase($user->first_name[0] .'. '. $user->last_name),
                 'fullname'       => pascalCase($user->first_name .' '. $user->last_name),
                 'fullname2'      => pascalCase($user->first_name .' '. $optional_middle .' '. $user->last_name),
+                'fullname3'      => pascalCase($user->last_name .' '. $user->first_name .' '. $optional_middle[0] . '.'),
                 'email'          => $user->email,
                 'section'        => pascalCase($user->section),
                 'department'     => pascalCase($user->department),

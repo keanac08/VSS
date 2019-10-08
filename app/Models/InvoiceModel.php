@@ -11,11 +11,18 @@ class InvoiceModel extends Model
     {
         parent::__construct($attributes);
 
-        $this->uat = DB::connection('oracle_uat');
+        // $this->uat = DB::connection('oracle_uat');
         $this->oracle = DB::connection('oracle');
     }
 
     public function selectForAllocation($customer_id){
+
+        if(session('user.user_type_name') != 'Administrator'){
+            $and = 'AND msn.attribute1 is not null';
+        }
+        else{
+            $and = '';
+        }
         
         $sql = "SELECT  rcta.trx_number invoice_number,
                         to_char(rcta.trx_date, 'MM/DD/YYYY') invoice_date,
@@ -37,10 +44,11 @@ class InvoiceModel extends Model
                             ON msn.inventory_item_id = msib.inventory_item_id
                             and 121 = msib.organization_id
                 WHERE     1 = 1
-                        AND rcta.trx_date >= '2019-08-20'
+                        AND rcta.trx_date >= '2019-10-09'
                         AND rcta.cust_trx_type_id = 1002
                         AND cm.orig_trx_id IS NULL
                         AND rcta.attribute4 IS NULL
+                        ".$and."
                         AND rcta.sold_to_customer_id = :p_customer_id
                     ORDER BY invoice_date, sales_model, rcta.customer_trx_id";
 
@@ -48,7 +56,7 @@ class InvoiceModel extends Model
             'p_customer_id' => $customer_id
         ];
 
-		return $this->uat->select($sql, $params);
+		return $this->oracle->select($sql, $params);
     }
     
     public function selectForPrint($customer_id, $from_date, $to_date){
@@ -86,7 +94,7 @@ class InvoiceModel extends Model
             'p_to_date' => laravelDate($to_date)
         ];
 
-		return $this->uat->select($sql, $params);
+		return $this->oracle->select($sql, $params);
     }
 
     public function selectForReceivingCopy($invoice_ids){
@@ -284,7 +292,7 @@ class InvoiceModel extends Model
             'p_cs_number' => $cs_number
         ];
 
-		return $this->uat->update($sql, $params);
+		return $this->oracle->update($sql, $params);
     
     }
     

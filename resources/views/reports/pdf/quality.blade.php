@@ -145,7 +145,7 @@
             </table>
 
             <p>&nbsp;</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that the above isuzu motor vehicle more particularly described below was manufactured in accordance with the safety and quality standards of Isuzu Philippines Corporation.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that the above Isuzu motor vehicle more particularly described below was manufactured in accordance with the safety and quality standards of Isuzu Philippines Corporation.</p>
             <p>&nbsp;</p>
             
             <table class="main-body" border="1">

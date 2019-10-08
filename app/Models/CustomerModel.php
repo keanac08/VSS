@@ -10,7 +10,7 @@ class CustomerModel extends Model
     {
         parent::__construct($attributes);
 
-        $this->uat = DB::connection('oracle_uat');
+        // $this->uat = DB::connection('oracle_uat');
         $this->oracle = DB::connection('oracle');
     }
 
@@ -26,12 +26,12 @@ class CustomerModel extends Model
                     ON rcta.sold_to_customer_id = hcaa.cust_account_id
                 LEFT JOIN hz_parties hp ON hcaa.party_id = hp.party_id
                 WHERE 1 = 1
-                    AND rcta.trx_date >= '2019-08-20'
+                    AND rcta.trx_date >= '2019-10-09'
                     AND rcta.cust_trx_type_id = 1002
                     AND cm.orig_trx_id IS NULL
                    AND rcta.attribute4 IS NULL
                 ORDER BY hp.party_name";
-        return  $this->uat->select($sql);
+        return  $this->oracle->select($sql);
     }
 
     public function selectCustomersInvoicePrint(){
@@ -46,11 +46,11 @@ class CustomerModel extends Model
                     ON rcta.sold_to_customer_id = hcaa.cust_account_id
                 LEFT JOIN hz_parties hp ON hcaa.party_id = hp.party_id
                 WHERE 1 = 1
-                    AND rcta.trx_date >= '2019-08-20'
+                    AND rcta.trx_date >= '2019-10-09'
                     AND rcta.cust_trx_type_id = 1002
                     AND cm.orig_trx_id IS NULL
                    AND rcta.attribute4 IS NOT NULL
                 ORDER BY hp.party_name";
-        return  $this->uat->select($sql);
+        return  $this->oracle->select($sql);
     }
 }

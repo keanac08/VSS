@@ -149,7 +149,10 @@
                 <td style="font-size: 9px;">Signature Over Printed Name</td>
             </tr>
             <tr>
-                <td colspan="2">Date : __________________</td>
+                <td colspan="2">Date : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__________________</td>
+            </tr>
+            <tr>
+                <td colspan="2">Printed By : {{session('user.shortname')}}</td>
             </tr>
         </table>
     </footer>

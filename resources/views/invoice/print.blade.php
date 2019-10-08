@@ -93,8 +93,8 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
                 <div class="modal-body">
-                    <p><button @click="printInvoice" style="width:100%;" type="button" class="btn bg-teal-400 btn-labeled btn-labeled-left"><b><i class="icon-printer"></i></b> Sales Invoice</button></p>
-                    <p><button @click="printDelivery" style="width:100%;" type="button" class="btn bg-teal-400 btn-labeled btn-labeled-left"><b><i class="icon-printer"></i></b> Delivery Receipt</button></p>
+                    <p><button @click="printInvoice" style="width:100%;" type="button" class="btn bg-teal-400 btn-labeled btn-labeled-left"><b><i class="icon-printer"></i></b> Sales Invoice / Delivery Receipt</button></p>
+                    {{-- <p><button @click="printDelivery" style="width:100%;" type="button" class="btn bg-teal-400 btn-labeled btn-labeled-left"><b><i class="icon-printer"></i></b> Delivery Receipt</button></p> --}}
                     <p><button @click="printCrc" style="width:100%;" type="button" class="btn bg-teal btn-labeled btn-labeled-left"><b><i class="icon-printer"></i></b> Dealers Receiving Copy</button></p>
                     <p><button @click="printCqc" style="width:100%;" type="button" class="btn bg-teal-600 btn-labeled btn-labeled-left"><b><i class="icon-printer"></i></b> Certificate of Quality COntrol</button></p>
                 </div>

@@ -11,6 +11,13 @@ class UserModel extends Authenticatable
     protected $table = 'ipc_portal.users';
     protected $primaryKey = 'user_id';
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->oracle = DB::connection('oracle');
+    }
+
     public function get($user_id)
     {
         $sql = 'SELECT u.user_id,
