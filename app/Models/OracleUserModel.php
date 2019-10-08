@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models;
-use DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class OracleUserModel extends Authenticatable
 {
