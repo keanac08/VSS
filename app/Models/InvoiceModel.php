@@ -66,14 +66,15 @@ class InvoiceModel extends Model
                         to_char(rcta.trx_date, 'MM/DD/YYYY') invoice_date,
                         rcta.attribute3 cs_number,
                         NVL(ooha.attribute3, '-') fleet_customer,
-                        msib.attribute9 sales_model,
-                        msn.attribute1 csr_number,
+                        CASE WHEN oola.attribute1 is null then msib.attribute9 else msib.attribute9 || ' ' || oola.attribute1  end sales_model,                        msn.attribute1 csr_number,
                         rcta.attribute4 wb_number
                 FROM ra_customer_trx_all rcta
                         LEFT JOIN ipc_vehicle_cm cm 
                             ON rcta.customer_trx_id = cm.orig_trx_id
                         LEFT JOIN oe_order_headers_all ooha
                             ON rcta.interface_header_attribute1 = ooha.order_number
+                        LEFT JOIN oe_order_lines_all oola
+                            ON ooha.header_id = oola.header_id
                         LEFT JOIN mtl_serial_numbers msn
                             ON rcta.attribute3 = msn.serial_number
                         LEFT JOIN mtl_system_items_b msib
@@ -148,7 +149,8 @@ class InvoiceModel extends Model
                     msn.attribute1                                          csr_number,
                     msn.attribute12                                         csr_or_number,
                     msib.segment1                                           model_code,
-                    msib.attribute9                                         sales_model,
+                    CASE WHEN oola.attribute1 is null then msib.attribute9 else msib.attribute9 || ' ' || oola.attribute1  end sales_model,                        
+                    msn.attribute1 csr_number,
                     msn.lot_number                                          lot_number,
                     msn.serial_number                                       cs_number,
                     msn.attribute2                                          chassis_number,
@@ -209,14 +211,15 @@ class InvoiceModel extends Model
                         ON rcta.interface_header_attribute1 = ooha.order_number
                     INNER JOIN oe_order_lines_all oola
                         ON rcta.interface_header_attribute6 = oola.line_id
-                        INNER JOIN wsh_delivery_details wdd
+                    INNER JOIN wsh_delivery_details wdd
 						ON oola.line_id = wdd.source_line_id
-                    INNER JOIN ra_terms_tl rtl ON ooha.payment_term_id = rtl.term_id
+                    INNER JOIN ra_terms_tl rtl 
+                        ON ooha.payment_term_id = rtl.term_id
                     INNER JOIN mtl_serial_numbers msn
                         ON rcta.attribute3 = msn.serial_number
                     INNER JOIN mtl_system_items_b msib
                         ON     msib.inventory_item_id = msn.inventory_item_id
-                            AND msib.organization_id = msn.current_organization_id
+                        AND msib.organization_id = msn.current_organization_id
                     LEFT JOIN
                     (SELECT HCAA.cust_account_id,
                             hp.party_name,
