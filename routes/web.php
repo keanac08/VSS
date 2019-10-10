@@ -18,7 +18,7 @@
 // Route::group(['middleware' => ['auth:oracle_user, ipc_portal_user']], function () {
 Route::middleware(['auth:oracle_user,ipc_portal_user'])->group(function () { //--> Authenticated Users
 
-    Route::view('/', 'dashboard');;
+    Route::view('/', 'dashboard');
     Route::view('/dashboard', 'dashboard')->name('dashboard');
     Route::view('/wb-entry', 'warranty_booklet.entry')->name('wb.entry');
     Route::view('/wb-allocate', 'warranty_booklet.allocate')->name('wb.allocate');

@@ -99,7 +99,10 @@
                 <td class="title">INVOICE / DR / WB / CSR - RECEIVING REPORT</td>
             </tr>
             <tr>
-                <td>Gencars - Makati</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>{{ $data[0]->party_name . ' - ' . $data[0]->account_name}}</td>
             </tr>
             <tr>
                 <td>{{ date('F d, Y') }}</td>

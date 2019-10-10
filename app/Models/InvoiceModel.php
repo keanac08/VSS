@@ -106,7 +106,9 @@ class InvoiceModel extends Model
                         NVL(ooha.attribute3, '-') fleet_customer,
                         msib.attribute9 sales_model,
                         msn.attribute1 csr_number,
-                        rcta.attribute4 wb_number
+                        rcta.attribute4 wb_number,
+                        hp.party_name,
+                        hcaa.account_name
                 FROM ra_customer_trx_all rcta
                         LEFT JOIN ipc_vehicle_cm cm 
                             ON rcta.customer_trx_id = cm.orig_trx_id
@@ -117,6 +119,10 @@ class InvoiceModel extends Model
                         LEFT JOIN mtl_system_items_b msib
                             ON msn.inventory_item_id = msib.inventory_item_id
                             and 121 = msib.organization_id
+                        LEFT JOIN hz_cust_accounts_all hcaa
+                            ON hcaa.cust_account_id = rcta.sold_to_customer_id
+                        LEFT JOIN hz_parties hp
+                            ON hcaa.party_id = hp.party_id
                 WHERE     1 = 1
                         AND rcta.cust_trx_type_id = 1002
                         AND cm.orig_trx_id IS NULL
