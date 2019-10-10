@@ -69,12 +69,24 @@ class InvoiceModel extends Model
                         CASE WHEN oola.attribute1 is null then msib.attribute9 else msib.attribute9 || ' ' || oola.attribute1  end sales_model,                        msn.attribute1 csr_number,
                         rcta.attribute4 wb_number
                 FROM ra_customer_trx_all rcta
+                        LEFT JOIN
+                                (SELECT DISTINCT
+                                        customer_trx_id,
+                                        inventory_item_id,
+                                        warehouse_id,
+                                        interface_line_attribute6 line_id
+                                FROM ra_customer_trx_lines_all
+                                WHERE     1 = 1
+                                        AND line_type = 'LINE'
+                                        AND interface_line_attribute6 IS NOT NULL) rctla
+                            ON rcta.customer_trx_id = rctla.customer_trx_id
                         LEFT JOIN ipc_vehicle_cm cm 
                             ON rcta.customer_trx_id = cm.orig_trx_id
                         LEFT JOIN oe_order_headers_all ooha
                             ON rcta.interface_header_attribute1 = ooha.order_number
                         LEFT JOIN oe_order_lines_all oola
                             ON ooha.header_id = oola.header_id
+                            AND rctla.line_id = oola.line_id
                         LEFT JOIN mtl_serial_numbers msn
                             ON rcta.attribute3 = msn.serial_number
                         LEFT JOIN mtl_system_items_b msib
@@ -202,7 +214,8 @@ class InvoiceModel extends Model
                                     ELSE 0
                                     END)
                                     discount,
-                                SUM (TAX_RECOVERABLE) vat_amount
+                                SUM (TAX_RECOVERABLE) vat_amount,
+                                MAX(interface_line_attribute6) line_id
                             FROM ra_customer_trx_lines_all
                         WHERE line_type = 'LINE'
                         GROUP BY customer_trx_id) rctla
