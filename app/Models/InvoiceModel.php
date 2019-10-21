@@ -161,7 +161,7 @@ class InvoiceModel extends Model
                     msn.attribute1                                          csr_number,
                     msn.attribute12                                         csr_or_number,
                     msib.segment1                                           model_code,
-                    CASE WHEN oola.attribute1 is null then msib.attribute9 else msib.attribute9 || ' ' || oola.attribute1  end sales_model,                        
+                    CASE WHEN oola.attribute1 is not null and oola.attribute1 != '(BOONDOCK)'  then msib.attribute9 || ' ' || oola.attribute1 else msib.attribute9  end sales_model,                        
                     msn.attribute1 csr_number,
                     msn.lot_number                                          lot_number,
                     msn.serial_number                                       cs_number,
@@ -173,7 +173,7 @@ class InvoiceModel extends Model
                         THEN
                             NULL
                         ELSE
-                            msib.attribute8
+                            (CASE WHEN oola.attribute1 = '(BOONDOCK)' then msib.attribute8 || ' BDK' else ' ' end)
                         END)
                         body_color,
                     msib.attribute17                                        fuel,
