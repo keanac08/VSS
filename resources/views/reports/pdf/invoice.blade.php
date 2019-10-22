@@ -251,8 +251,9 @@
                         <td>&nbsp;</td>
                         <td>WB No.:</td>
                         <td>Engine</td>
-                        <td>{{ $row->engine_type . '-' . $row->engine_no }}</td>
+                        <td>{{ explode( '-', $row->engine_type )[ 0 ] . '-' . $row->engine_no }}</td>
                         <td colspan="3">&nbsp;</td>
+                        {{-- str_replace( ' ', '_', trim( explode( '--', $command )[ 0 ] ) ).PHP_EOL; --}}
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
