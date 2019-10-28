@@ -173,7 +173,7 @@ class InvoiceModel extends Model
                         THEN
                             NULL
                         ELSE
-                            (CASE WHEN oola.attribute1 = '(BOONDOCK)' then msib.attribute8 || ' BDK' else ' ' end)
+                            (CASE WHEN oola.attribute1 = '(BOONDOCK)' then msib.attribute8 || ' BDK' else msib.attribute8 end)
                         END)
                         body_color,
                     msib.attribute17                                        fuel,
