@@ -113,31 +113,42 @@
                         })
                     }
                     else{
-                        axios.post('/wb-store', {
-                            wb_batch_name : this.wb_batch_name,
-                            wb_prefix : this.wb_prefix,
-                            wb_from : this.wb_from,
-                            wb_to : this.wb_to
-                        })
-                        .then(() => {
-                            Swal.fire({
-                                type: 'success',
-                                text: 'Warranty booklet series has been saved.',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: 'Upload Batch ' + this.wb_prefix+this.wb_from + '-' + this.wb_prefix+this.wb_to + ' ('+ (parseInt(this.wb_to) - parseInt(this.wb_from)) +')',
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            // cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, upload it!'
+                        }).then((result) => {
+                            if (result.value) {
+                                axios.post('/wb-store', {
+                                    wb_batch_name : this.wb_batch_name,
+                                    wb_prefix : this.wb_prefix,
+                                    wb_from : this.wb_from,
+                                    wb_to : this.wb_to
+                                })
+                                .then(() => {
+                                    Swal.fire({
+                                        type: 'success',
+                                        text: 'Warranty booklet series has been saved.',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
 
-                            this.last_batch_name = this.wb_batch_name
+                                    this.last_batch_name = this.wb_batch_name
+                                })
+                                .then(() => {
+                                    this.show_success_msg = true
+                                    this.wb_from = ''
+                                    this.wb_to = ''
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
+                            }
                         })
-                        .then(() => {
-                            this.show_success_msg = true
-                            this.wb_from = ''
-                            this.wb_to = ''
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                        
                     }
                     
                 }
