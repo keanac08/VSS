@@ -409,7 +409,7 @@
                     </tr>
                     <tr>
                         <td width="25%"><strong>{{ STRTOUPPER(session('user.fullname3')) }}</strong></td>
-                        <td width="25%"><strong>VILLARICO, MARVIN M.</strong></td>
+                        <td width="25%"><strong>VILLARICO, MARVIN S.</strong></td>
                         <td width="25%"><strong>TORRES, DENNIS L.</strong></td>
                         <td width="25%"><strong>TREASURY SECTION</strong></td>
                     </tr>
@@ -701,7 +701,7 @@
                     </tr>
                     <tr>
                         <td width="25%"><strong>{{ STRTOUPPER(session('user.fullname3')) }}</strong></td>
-                        <td width="25%"><strong>VILLARICO, MARVIN M.</strong></td>
+                        <td width="25%"><strong>VILLARICO, MARVIN S.</strong></td>
                         <td width="25%"><strong>TORRES, DENNIS L.</strong></td>
                         <td width="25%"><strong>TREASURY SECTION</strong></td>
                     </tr>
