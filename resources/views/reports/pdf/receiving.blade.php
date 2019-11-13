@@ -88,7 +88,7 @@
             </tr>  
             <tr>
                 <td>Tel. No. (049) 541-0224 / Local 245 | Fax No. (043) 541-0347</td> 
-                <td align="right">Vehicle Sales Portal</td>
+                <td align="right">Vehicle Invoicing System</td>
             </tr>
         </table>
     </header>
