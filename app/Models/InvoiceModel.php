@@ -290,6 +290,7 @@ class InvoiceModel extends Model
                         ON     msib.inventory_item_id = msit.inventory_item_id
                             AND msit.organization_id = 121
                 WHERE 1 = 1
+                    AND msn.c_attribute30 is null
                     AND rcta.customer_trx_id in (".join(',',$invoice_ids).")
                 ORDER BY rcta.trx_date, msib.attribute9, rcta.customer_trx_id";
 
