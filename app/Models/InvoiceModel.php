@@ -98,6 +98,7 @@ class InvoiceModel extends Model
                         AND rcta.cust_trx_type_id = 1002
                         AND cm.orig_trx_id IS NULL
                         AND rcta.attribute4 IS NOT NULL
+                        AND msn.c_attribute30 is null
                         AND rcta.sold_to_customer_id = :p_customer_id
                     ORDER BY invoice_date, sales_model";
 
@@ -138,6 +139,7 @@ class InvoiceModel extends Model
                             ON hcaa.party_id = hp.party_id
                 WHERE     1 = 1
                         AND rcta.cust_trx_type_id = 1002
+                        AND msn.c_attribute30 is null
                         AND cm.orig_trx_id IS NULL
                         AND rcta.attribute4 IS NOT NULL
                         AND rcta.customer_trx_id in (".join(',',$invoice_ids).")
