@@ -373,9 +373,11 @@
                 <table class="main-table-3">
                     <tr>
                         <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td style="font-size: 7pt;">Dealers Fleet Account:</td>
+                        <td rowspan="2" style="font-size: 7pt;">{{ $row->notation }}</td>
                     </tr>
                     <tr>
                         <td style="font-size: 10pt;"><strong style="margin-left: 10pt;">{{ $row->fleet_name }}</strong></td>
@@ -665,9 +667,11 @@
                 <table class="main-table-3">
                     <tr>
                         <td>&nbsp;</td>
+                        {{-- <td>&nbsp;</td> --}}
                     </tr>
                     <tr>
                         <td style="font-size: 7pt;">Dealers Fleet Account:</td>
+                        {{-- <td rowspan="2" style="font-size: 7pt;">{{ $row->notation }}</td> --}}
                     </tr>
                     <tr>
                         <td style="font-size: 10pt;"><strong style="margin-left: 10pt;">{{ $row->fleet_name }}</strong></td>
