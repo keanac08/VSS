@@ -229,7 +229,8 @@ class InvoiceModel extends Model
                     INNER JOIN wsh_delivery_details wdd
 						ON oola.line_id = wdd.source_line_id
                     INNER JOIN ra_terms_tl rtl 
-                        ON ooha.payment_term_id = rtl.term_id
+                        -- ON ooha.payment_term_id = rtl.term_id
+                        ON rcta.term_id = rtl.term_id -- 12-27-19 em
                     INNER JOIN mtl_serial_numbers msn
                         ON rcta.attribute3 = msn.serial_number
                     INNER JOIN mtl_system_items_b msib
