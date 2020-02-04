@@ -157,6 +157,7 @@ class InvoiceModel extends Model
                     rcta.trx_date,
                     rtl.name                                                payment_terms,
                     rcta.interface_header_attribute1                        so_number,
+                    rcta.attribute14                                        notation,
                     rcta.attribute4                                         wb_number,
                     CONCAT ('313', LPAD (wdd.attribute2, 8, 0))             dr_number,
                     msn.inventory_item_id,
