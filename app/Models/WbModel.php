@@ -54,18 +54,20 @@ class WbModel extends Model
        return $this->oracle->select($sql);
     }
 
-    public function selectRequiredWbs($count)
+    public function selectRequiredWbs($count, $model_id)
     {
         
         $sql = "SELECT tbl.id, CONCAT (tbl.prefix, tbl.wb_number) wb_number
                     FROM ( SELECT *
                             FROM ipc.ipc_vehicle_wb_master
                             WHERE cs_number IS NULL
+                            AND NVL(sales_model_id, 0) = :p_model_id
                         ORDER BY id) tbl
                 WHERE ROWNUM <= :p_count";
 
         $params = [
-            'p_count' => $count
+            'p_count' => $count,
+            'p_model_id' => $model_id
         ];
 
 		return $this->oracle->select($sql, $params);

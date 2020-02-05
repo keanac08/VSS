@@ -25,7 +25,8 @@ class WbController extends Controller
                     'batch_name' => $request->wb_batch_name,
                     'prefix' => $request->wb_prefix,
                     'wb_number' => $request->wb_from,
-                    'uploaded_by' => session('user.shortname')
+                    'uploaded_by' => session('user.shortname'),
+                    'sales_model_id' => $request->wb_model_id
                 ]);
 
             $request->wb_from++;
@@ -60,7 +61,7 @@ class WbController extends Controller
 
     public function fetchRequiredWbs(request $request)
     {
-        return $this->WbModel->selectRequiredWbs($request->cnt);
+        return $this->WbModel->selectRequiredWbs($request->cnt, $request->model_id);
         
     }
 

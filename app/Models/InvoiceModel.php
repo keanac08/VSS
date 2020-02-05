@@ -15,7 +15,7 @@ class InvoiceModel extends Model
         $this->oracle = DB::connection('oracle');
     }
 
-    public function selectForAllocation($customer_id){
+    public function selectForAllocation($customer_id, $model_id){
 
         if(session('user.user_type_name') != 'Administrator'){
             $and = 'AND msn.attribute1 is not null';
@@ -23,6 +23,11 @@ class InvoiceModel extends Model
         else{
             $and = '';
         }
+
+        if($model_id == 0)
+            $and1 = "AND ivm.model_variant NOT IN ('P-SERIES')";
+        else
+            $and1 = "AND ivm.model_variant LIKE 'P-SERIES'";
         
         $sql = "SELECT  rcta.trx_number invoice_number,
                         to_char(rcta.trx_date, 'MM/DD/YYYY') invoice_date,
@@ -43,6 +48,8 @@ class InvoiceModel extends Model
                         LEFT JOIN mtl_system_items_b msib
                             ON msn.inventory_item_id = msib.inventory_item_id
                             and 121 = msib.organization_id
+                        LEFT JOIN ipc_dms.ipc_vehicle_models_v ivm
+                            ON msib.inventory_item_id = ivm.inventory_item_id
                 WHERE     1 = 1
                         AND rcta.trx_date >= '2019-10-09'
                         AND rcta.cust_trx_type_id = 1002
@@ -50,6 +57,7 @@ class InvoiceModel extends Model
                         AND rcta.attribute4 IS NULL
                         ".$and."
                         AND rcta.sold_to_customer_id = :p_customer_id
+                        ".$and1."
                     ORDER BY invoice_date, sales_model, rcta.customer_trx_id";
 
         $params = [

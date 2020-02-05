@@ -13,7 +13,7 @@ class InvoiceController extends Controller
 
     public function fetchForAllocation(request $request)
     {
-        $rows = (object)$this->InvoiceModel->selectForAllocation($request->customer_id);
+        $rows = (object)$this->InvoiceModel->selectForAllocation($request->customer_id, $request->model_id);
 
         $data = [];
         foreach($rows as $row)

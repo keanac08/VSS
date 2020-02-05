@@ -22,7 +22,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="d-block"><strong>Customer</strong></label>
-                                    <select class="form-control select2">
+                                    <select class="form-control select2-customer">
                                         <option value="">Nothing Selected</option>
                                         <option v-for="customer in customers" :value="customer.customer_id">
                                             @{{ (customer.customer_name + ' - ' + customer.account_name) }}
@@ -30,7 +30,17 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6 text-right" style="position:relative">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label><strong>Sales Model:</strong></label>
+                                    <select class="form-control select2-model">
+                                        <option v-for="model in models" :value="model.id">
+                                            @{{ model.text }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-right" style="position:relative">
                                 <div class="list-icons" style="right:10px;bottom: 20px;position:absolute;">
                                     <button :disabled="disable_save" class="btn bg-teal btn-sm" @click='saveWb' >
                                         Save
@@ -101,11 +111,17 @@
                     customers: [],
                     invoices: [],
                     customer_id : '',
+                    model_id : 0,
                     selected: [],
                     count: 0,
 
                     show_success_msg: false,
                     disable_save: true,
+
+                    models : [
+                        {id : 0, text: 'All Models'},
+                        {id : 1, text: 'Traviz'}
+                    ]
                 }
             },
             created() {
@@ -116,17 +132,24 @@
                     this.show_success_msg = false
                     this.fetchInvoices()
                 },
+                model_id: function () {
+                    this.show_success_msg = false
+                    this.fetchInvoices()
+                },
             },
             mounted(){
                 let self = this
                 
-                $('select.select2').select2({
-                    width: 450,
+                $('select.select2-customer, select.select2-model').select2({
+                    width: '100%',
                     placeholder: "Click to filter customer...",
                 });
                 
-                $('select.select2').on('select2:select', function (e) {
+                $('select.select2-customer').on('select2:select', function (e) {
                     self.customer_id = e.params.data.id
+                });
+                $('select.select2-model').on('select2:select', function (e) {
+                    self.model_id = e.params.data.id
                 });
             },
             methods:{
@@ -150,7 +173,8 @@
 
                    axios.get('/invoice-fetch-allocation', {
                         params: {
-                            customer_id: this.customer_id
+                            customer_id: this.customer_id,
+                            model_id: this.model_id,
                         }
                     })
                     .then((response) => {
@@ -209,7 +233,8 @@
                         if(selected.length > 0){
                             axios.get('/wb-fetch', {
                                 params: {
-                                    cnt: selected.length
+                                    cnt: selected.length,
+                                    model_id: this.model_id
                                 }
                             })
                             .then((response) => {
@@ -243,7 +268,8 @@
                         if(count > 0){
                             axios.get('/wb-fetch', {
                                 params: {
-                                    cnt: count
+                                    cnt: count,
+                                    model_id: this.model_id
                                 }
                             })
                             .then((response) => {
