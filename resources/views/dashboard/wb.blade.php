@@ -18,6 +18,7 @@
 				                <th>Uploaded Date</th>
 				                <th>Uploaded By</th>
                                 <th>Batch Name</th>
+                                <th>Sales Model</th>
                                 <th>Status</th>
 				               
 				            </tr>
@@ -29,6 +30,7 @@
                                 <td>@{{ wb.uploaded_date }}</td>         
                                 <td>@{{ wb.uploaded_by }}</td>         
                                 <td>@{{ wb.batch_name }}</td>
+                                <td>@{{ wb.sales_model }}</td>
                                 <td><span class="badge badge-success">Available</span></td>     
                             </tr>
                         </tbody>

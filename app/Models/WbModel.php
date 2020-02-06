@@ -47,7 +47,8 @@ class WbModel extends Model
                         wb_number,
                         uploaded_by,
                         to_char(uploaded_date,'MM/DD/YYYY') uploaded_date,
-                        batch_name
+                        batch_name,
+                        CASE sales_model_id WHEN 1 THEN 'Traviz' ELSE 'All Models' END sales_model
                 FROM IPC.IPC_VEHICLE_WB_MASTER
                 WHERE cs_number IS NULL";
 
