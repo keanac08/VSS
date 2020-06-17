@@ -190,7 +190,8 @@ class InvoiceModel extends Model
                     msib.attribute17                                        fuel,
                     msib.attribute14                                        gvw,
                     msn.attribute6                                          key_no,
-                    msib.attribute13                                        tire_specs,
+                    -- msib.attribute13                                        tire_specs,
+                    nvl(msn.c_attribute9,msib.attribute13)                  tire_specs, -- 06-15-20 em
                     msn.attribute8                                          battery,
                     msib.attribute16                                        displacement,
                     reverse(substr(reverse(substr(msn.attribute1,7)),-4)) year_model,
