@@ -55,6 +55,7 @@ class InvoiceModel extends Model
                         AND rcta.cust_trx_type_id = 1002
                         AND cm.orig_trx_id IS NULL
                         AND rcta.attribute4 IS NULL
+                        and msn.current_status = 4
                         ".$and."
                         AND rcta.sold_to_customer_id = :p_customer_id
                         ".$and1."

@@ -14,9 +14,7 @@ class LoginController extends Controller
     public function authenticate($user_id, $source_id, OracleUserModel $OracleUserModel, UserModel $UserModel)
     {
         
-        echo 'AUTHENTICATING...';
-
-        if (Auth::check()) return redirect()->route('dashboard');
+        // echo 'AUTHENTICATING...';
 
         if($source_id == 1){
             $user = $OracleUserModel->get($user_id)[0];
