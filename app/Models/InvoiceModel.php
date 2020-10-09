@@ -265,6 +265,7 @@ class InvoiceModel extends Model
                             LEFT JOIN hz_parties hp ON hcaa.party_id = hp.party_id
                             LEFT JOIN HZ_CODE_ASSIGNMENTS hca
                                 ON     hca.owner_table_id = hp.party_id
+                                and hca.class_category = 'BIR_BUSINESS_STYLE'
                                     AND hca.end_date_active IS NULL
                             LEFT JOIN HZ_CLASS_CODE_DENORM hccd
                                 ON     hca.class_code = hccd.class_code
