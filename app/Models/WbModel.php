@@ -48,7 +48,8 @@ class WbModel extends Model
                         uploaded_by,
                         to_char(uploaded_date,'MM/DD/YYYY') uploaded_date,
                         batch_name,
-                        CASE sales_model_id WHEN 1 THEN 'Traviz' ELSE 'All Models' END sales_model
+                        -- CASE sales_model_id WHEN 1 THEN 'Traviz' ELSE 'All Models' END sales_model
+                         'All Models' sales_model
                 FROM IPC.IPC_VEHICLE_WB_MASTER
                 WHERE cs_number IS NULL";
 
@@ -62,13 +63,13 @@ class WbModel extends Model
                     FROM ( SELECT *
                             FROM ipc.ipc_vehicle_wb_master
                             WHERE cs_number IS NULL
-                            AND NVL(sales_model_id, 0) = :p_model_id
+                            -- AND NVL(sales_model_id, 0) = :p_model_id
                         ORDER BY id) tbl
                 WHERE ROWNUM <= :p_count";
 
         $params = [
-            'p_count' => $count,
-            'p_model_id' => $model_id
+            'p_count' => $count
+            // ,'p_model_id' => $model_id
         ];
 
 		return $this->oracle->select($sql, $params);

@@ -30,7 +30,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            {{-- <div class="col-md-3">
                                 <div class="form-group">
                                     <label><strong>Sales Model:</strong></label>
                                     <select class="form-control select2-model">
@@ -39,12 +39,12 @@
                                         </option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-md-3 text-right" style="position:relative">
-                                <div class="list-icons" style="right:10px;bottom: 20px;position:absolute;">
+                            </div> --}}
+                            <div class="col-md-3">
+                                <div class="list-icons" style="bottom: 20px;position:absolute;">
                                     <button :disabled="disable_save" class="btn bg-teal btn-sm" @click='saveWb' >
                                         Save
-                                </button>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -118,10 +118,10 @@
                     show_success_msg: false,
                     disable_save: true,
 
-                    models : [
-                        {id : 0, text: 'All Models'},
-                        {id : 1, text: 'Traviz'}
-                    ]
+                    // models : [
+                    //     {id : 0, text: 'All Models'},
+                    //     {id : 1, text: 'Traviz'}
+                    // ]
                 }
             },
             created() {

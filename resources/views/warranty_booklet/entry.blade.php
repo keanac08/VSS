@@ -30,14 +30,14 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label><strong>Sales Model:</strong></label>
                                             <select class="form-control select2">
                                                 <option v-for="model in models" :value="model.id">
                                                     @{{ model.text }}
                                                 </option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <label><strong>Batch Name:</strong></label>
                                             <input Readonly type="text" class="form-control" placeholder="" v-model="wb_batch_name">
@@ -97,30 +97,30 @@
                     wb_prefix : 'A',
                     wb_from : '',
                     wb_to : '',
-                    wb_model_id : '',
+                    wb_model_id : 0,
                     show_success_msg: false,
                     last_batch_name : '',
 
-                    models : [
-                        {id : '', text: ''},
-                        {id : 0, text: 'All Models'},
-                        {id : 1, text: 'Traviz'}
-                    ]
+                    // models : [
+                    //     {id : '', text: ''},
+                    //     {id : 0, text: 'All Models'},
+                    //     {id : 1, text: 'Traviz'}
+                    // ]
 
 
                 }
             },
             mounted(){
-                let self = this
+                // let self = this
                 
-                $('select.select2').select2({
-                    width: '100%',
-                    placeholder: "Nothing Selected...",
-                });
+                // $('select.select2').select2({
+                //     width: '100%',
+                //     placeholder: "Nothing Selected...",
+                // });
                 
-                $('select.select2').on('select2:select', function (e) {
-                    self.wb_model_id = e.params.data.id
-                });
+                // $('select.select2').on('select2:select', function (e) {
+                //     self.wb_model_id = e.params.data.id
+                // });
             },
             computed:{
                 wb_batch_name: function () {
