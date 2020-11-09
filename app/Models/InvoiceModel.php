@@ -24,10 +24,10 @@ class InvoiceModel extends Model
             $and = '';
         }
 
-        if($model_id == 0)
-            $and1 = "AND ivm.model_variant NOT IN ('P-SERIES')";
-        else
-            $and1 = "AND ivm.model_variant LIKE 'P-SERIES'";
+        // if($model_id == 0)
+        //     $and1 = "AND ivm.model_variant NOT IN ('P-SERIES')";
+        // else
+        //     $and1 = "AND ivm.model_variant LIKE 'P-SERIES'";
         
         $sql = "SELECT  rcta.trx_number invoice_number,
                         to_char(rcta.trx_date, 'MM/DD/YYYY') invoice_date,
@@ -58,7 +58,6 @@ class InvoiceModel extends Model
                         and msn.current_status = 4
                         ".$and."
                         AND rcta.sold_to_customer_id = :p_customer_id
-                        ".$and1."
                     ORDER BY invoice_date, sales_model, rcta.customer_trx_id";
 
         $params = [
