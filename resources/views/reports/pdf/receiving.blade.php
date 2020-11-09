@@ -78,7 +78,7 @@
     <header>
         <table border="0">
             <tr>
-                <td colspan="2"><img src="{{ asset('public/images/isuzu_logo.jpg') }}" /></td> 
+                <td colspan="2"><img src='c:/wamp64/www/vss/public/images/isuzu_logo.jpg' /></td> 
             </tr>  
             <tr>
                 <td colspan="2">Isuzu Philippines Corporation</td> 
