@@ -22,7 +22,7 @@
 
             header {
                 padding-bottom: .1cm;
-                margin-bottom: 1cm;
+                margin-bottom: 3px;
                 border-bottom: 2px solid #777;
                 font-size: 11px;
             }
@@ -95,6 +95,9 @@
     <main>
         {{-- main header --}}
         <table class="main-header">
+            <tr>
+                <td align="right" style="font-size: 11px;">Serial Number : {{ date('Ym') .  sprintf("- %03d", $serial) }}</td>
+            </tr>
             <tr>
                 <td class="title">INVOICE / DR / WB / CSR - RECEIVING REPORT</td>
             </tr>

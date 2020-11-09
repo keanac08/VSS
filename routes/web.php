@@ -67,6 +67,9 @@ Route::middleware(['auth:oracle_user,ipc_portal_user'])->group(function () { //-
 Route::get('login/{user_id}/{source_id}', 'Auth\LoginController@authenticate');
 Route::get('logout', 'Auth\LogoutController@logout')->name('logout');
 
+//job
+Route::get('/receiving-seq', 'ReceivingSeqController@index');
+
 
 
 
