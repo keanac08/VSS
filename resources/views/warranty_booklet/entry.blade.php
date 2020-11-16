@@ -141,14 +141,14 @@
                             timer: 1500
                         })
                     }
-                    else if(!this.wb_model_id){
-                        Swal.fire({
-                            type: 'error',
-                            text: 'Please select sales model.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
+                    // else if(!this.wb_model_id){
+                    //     Swal.fire({
+                    //         type: 'error',
+                    //         text: 'Please select sales model.',
+                    //         showConfirmButton: false,
+                    //         timer: 1500
+                    //     })
+                    // }
                     else{
                         Swal.fire({
                             title: 'Are you sure?',
