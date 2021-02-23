@@ -33,7 +33,8 @@ class InvoiceModel extends Model
                         to_char(rcta.trx_date, 'MM/DD/YYYY') invoice_date,
                         rcta.attribute3 cs_number,
                         NVL(ooha.attribute3, '-') fleet_customer,
-                        msib.attribute9 sales_model,
+                        -- msib.attribute9 sales_model,
+                        nvl(msn.c_attribute10,msib.attribute9) sales_model,
                         msn.attribute1 csr_number,
                         null wb_number,
                         null wb_id,
@@ -74,7 +75,10 @@ class InvoiceModel extends Model
                         to_char(rcta.trx_date, 'MM/DD/YYYY') invoice_date,
                         rcta.attribute3 cs_number,
                         NVL(ooha.attribute3, '-') fleet_customer,
-                        CASE WHEN oola.attribute1 is null then msib.attribute9 else msib.attribute9 || ' ' || oola.attribute1  end sales_model,                        msn.attribute1 csr_number,
+                        -- CASE WHEN oola.attribute1 is null then msib.attribute9 else msib.attribute9 || ' ' || oola.attribute1  end sales_model,
+                        -- CASE WHEN oola.attribute1 is null then nvl(msn.c_attribute10,msib.attribute9) else nvl(msn.c_attribute10,msib.attribute9) || ' ' || oola.attribute1  end sales_model,
+                        nvl(msn.c_attribute10,msib.attribute9) sales_model, 
+                        msn.attribute1 csr_number,
                         rcta.attribute4 wb_number
                 FROM ra_customer_trx_all rcta
                         LEFT JOIN
@@ -126,7 +130,8 @@ class InvoiceModel extends Model
                         to_char(rcta.trx_date, 'MM/DD/YYYY') invoice_date,
                         rcta.attribute3 cs_number,
                         NVL(ooha.attribute3, '-') fleet_customer,
-                        msib.attribute9 sales_model,
+                        -- msib.attribute9 sales_model,
+                        nvl(msn.c_attribute10,msib.attribute9) sales_model,
                         msn.attribute1 csr_number,
                         rcta.attribute4 wb_number,
                         hp.party_name,
@@ -156,8 +161,7 @@ class InvoiceModel extends Model
 		return $this->oracle->select($sql);
     }
 
-    public function selectForInvoicePrinting($invoice_ids){
-        
+    public function selectForInvoicePrinting($invoice_ids){ //
         $sql = "SELECT rcta.customer_trx_id,
                     rcta.sold_to_customer_id,
                     cust.cust_account_id,
@@ -172,7 +176,9 @@ class InvoiceModel extends Model
                     msn.attribute1                                          csr_number,
                     msn.attribute12                                         csr_or_number,
                     msib.segment1                                           model_code,
-                    CASE WHEN oola.attribute1 is not null and oola.attribute1 != '(BOONDOCK)'  then msib.attribute9 || ' ' || oola.attribute1 else msib.attribute9  end sales_model,                        
+                    -- CASE WHEN oola.attribute1 is not null and oola.attribute1 != '(BOONDOCK)'  then msib.attribute9 || ' ' || oola.attribute1 else msib.attribute9  end sales_model,                        
+                    -- CASE WHEN oola.attribute1 is not null and oola.attribute1 != '(BOONDOCK)'  then nvl(msn.c_attribute10,msib.attribute9)|| ' ' || oola.attribute1 else nvl(msn.c_attribute10,msib.attribute9)  end sales_model,
+                    nvl(msn.c_attribute10,msib.attribute9) sales_model,
                     msn.attribute1 csr_number,
                     msn.lot_number                                          lot_number,
                     msn.serial_number                                       cs_number,
@@ -339,7 +345,8 @@ class InvoiceModel extends Model
                         NVL (hcaa.account_name, hp.party_name) account_name,
                         ooha.attribute3                        fleet_name,
                         rcta.attribute3                        cs_number,
-                        msib.attribute9                        sales_model,
+                        -- msib.attribute9                        sales_model,
+                        nvl(msn.c_attribute10,msib.attribute9) sales_model,
                         rcta.attribute4 wb_number,
                         (CASE
                             WHEN (msib.attribute8 IS NULL OR msib.attribute8 = 'NO COLOR')
