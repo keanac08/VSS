@@ -161,14 +161,14 @@
                 </tr>
             </table>
             
-            <div>
-                <img style="float: right;position: absolute;top: -80px" src="{{ asset('public/images/signature/mike-bernas-2.png') }}">
+            <div style="text-align: right;">
+                <img style="width: 200px;" src="{{ asset('public/images/signature/anton-mina.png') }}">
             </div>
             
             <table class="main-footer" border="0">
                 <tr>
                     <td width="420px">&nbsp;</td>
-                    <td>Miguel Nilo D. Bernas</td>
+                    <td>Crisanto N. Mina</td>
                 </tr>
                 <tr>
                     <td width="420px">&nbsp;</td>
