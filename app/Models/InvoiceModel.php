@@ -317,11 +317,11 @@ class InvoiceModel extends Model
     
     public function updateWbNumber($wb_number, $cs_number){
         
-        $sql = "UPDATE ra_customer_trx_all
+        $sql = "UPDATE ar.ra_customer_trx_all
                         SET attribute4 = :p_wb_number
                     WHERE customer_trx_id =
                             (SELECT rct.customer_trx_id
-                                FROM ra_customer_trx_all rct
+                                FROM ar.ra_customer_trx_all rct
                                     LEFT JOIN ipc_vehicle_cm cm
                                         ON     rct.customer_trx_id = cm.orig_trx_id
                                             AND cm.CM_TRX_TYPE_ID != 10081
