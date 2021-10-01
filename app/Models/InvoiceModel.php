@@ -29,7 +29,9 @@ class InvoiceModel extends Model
         // else
         //     $and1 = "AND ivm.model_variant LIKE 'P-SERIES'";
         
-        $sql = "SELECT  rcta.trx_number invoice_number,
+        $sql = "SELECT  
+						rcta.customer_trx_id,
+						rcta.trx_number invoice_number,
                         to_char(rcta.trx_date, 'MM/DD/YYYY') invoice_date,
                         rcta.attribute3 cs_number,
                         NVL(ooha.attribute3, '-') fleet_customer,
@@ -315,24 +317,15 @@ class InvoiceModel extends Model
         return $this->oracle->select($sql);
     }
     
-    public function updateWbNumber($wb_number, $cs_number){
+    public function updateWbNumber($wb_number, $invoice_id){
         
         $sql = "UPDATE ar.ra_customer_trx_all
                         SET attribute4 = :p_wb_number
-                    WHERE customer_trx_id =
-                            (SELECT rct.customer_trx_id
-                                FROM ar.ra_customer_trx_all rct
-                                    LEFT JOIN ipc_vehicle_cm cm
-                                        ON     rct.customer_trx_id = cm.orig_trx_id
-                                            AND cm.CM_TRX_TYPE_ID != 10081
-                                WHERE     1 = 1
-                                    AND cm.orig_trx_id IS NULL
-                                    AND rct.cust_trx_type_id = 1002
-                                    AND rct.attribute3 = :p_cs_number)";
+                    WHERE customer_trx_id = :p_invoice_id";
 
         $params = [
             'p_wb_number' => $wb_number,
-            'p_cs_number' => $cs_number
+            'p_invoice_id' => $invoice_id
         ];
 
 		return $this->oracle->update($sql, $params);

@@ -74,7 +74,7 @@ class WbController extends Controller
             $row = (object)$row;
             if($row->wb_id){
                 $check_data[] =  $row->wb_id;
-                $update_data[] =  array('wb_id' => $row->wb_id,'wb_number' => $row->wb_number,'cs_number' =>  $row->cs_number);
+                $update_data[] =  array('invoice_id' => $row->invoice_id,'wb_id' => $row->wb_id,'wb_number' => $row->wb_number,'cs_number' =>  $row->cs_number);
             }
         }
 
@@ -91,7 +91,7 @@ class WbController extends Controller
                 $row = (object)$row;
 
                 if($this->WbModel->updateCsNumber($row->wb_id, $row->cs_number) == 1){
-                    $return[] = $this->InvoiceModel->updateWbNumber($row->wb_number, $row->cs_number);
+                    $return[] = $this->InvoiceModel->updateWbNumber($row->wb_number, $row->invoice_id);
                 }
             }
             return $return;

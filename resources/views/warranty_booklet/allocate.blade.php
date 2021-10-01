@@ -65,7 +65,7 @@
                                         <th align="center">CS Number</th>
                                         <th align="center">WB Number</th>
                                         <th>Sales Model</th>
-                                        {{-- <th>Invoice Number</th> --}}
+                                        <th>Invoice Number</th>
                                         <th align="center">Invoice Date</th>
                                         <th align="center">CSR Number</th>
                                         <th>Fleet Customer</th>
@@ -81,7 +81,7 @@
                                         <td align="center">@{{ invoice.wb_number }}
                                         </td>
                                         <td>@{{ invoice.sales_model }}</td>
-                                        {{-- <td align="center">@{{ invoice.invoice_number }}</td> --}}
+                                        <td align="center">@{{ invoice.invoice_number }}</td>
                                         <td align="center">@{{ invoice.invoice_date }}</td>
                                         <td align="center">@{{ invoice.csr_number }}</td>
                                         <td>@{{ invoice.fleet_customer }}</td>

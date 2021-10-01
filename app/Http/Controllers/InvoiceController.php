@@ -19,6 +19,7 @@ class InvoiceController extends Controller
         foreach($rows as $row)
         {
             $data[] = array(
+                        'invoice_id' => $row->customer_trx_id,
                         'invoice_number' => $row->invoice_number,
                         'invoice_date' => $row->invoice_date,
                         'fleet_customer' => $row->fleet_customer,
